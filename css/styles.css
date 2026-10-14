@@ -13,7 +13,7 @@ body {
 
 /* Header */
 header {
-    background-color: #4c1d95;
+    background-color: #435a70d8;
     color: white;
     text-align: center;
     padding: 2rem 1rem;
@@ -36,7 +36,7 @@ main {
 }
 
 section {
-    background-color: white;
+    background-color: rgb(180, 165, 165);
     padding: 1.5rem;
     border: 1px solid #ddd6fe;
     border-radius: 10px;
@@ -71,7 +71,7 @@ form p {
 }
 
 button {
-    background-color: #4c1d95;
+    background-color: #49464c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -87,7 +87,7 @@ button:hover {
 /* Keyboard focus */
 input:focus-visible,
 button:focus-visible {
-    outline: 3px solid #2563eb;
+    outline: 3px solid #070d1a;
     outline-offset: 3px;
 }
 

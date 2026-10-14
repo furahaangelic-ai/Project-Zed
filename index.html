@@ -41,16 +41,69 @@
                 </div>
 
                <div>
-                     <label for="Personal-Cost">Food and activities cost per person</label>
-                     <input type="number" id="Personal-Cost" name="Personal-Cost"
-           min="0" step="0.01" required>
-                </div>
-                <div>
-                    <label for="Shared-cost"> Total shared cost for the whole group</label>
-                                        <p> Including shared expenses like lodging and transportation.</p>
+    <h3>Activities</h3>
 
-                    <input type="number" id="Shared-cost" name="Shared-cost" min="0" step="0.01" required>
-                </div>
+    <label for="activity-name">What do you plan to do?</label>
+    <input type="text" id="activity-name"
+           placeholder="Example: Visit an observation deck">
+
+    <label for="activity-cost">Activity cost ($)</label>
+    <input type="number" id="activity-cost" min="0" step="0.01">
+
+    <label for="activity-cost-type">How is this cost charged?</label>
+    <select id="activity-cost-type">
+        <option value="person">Per person</option>
+        <option value="group">For the whole group</option>
+    </select>
+
+    <button type="button" id="add-activity-btn">Add Activity</button>
+
+    <ul id="activities-list"></ul>
+</div>
+
+<div>
+    <h3>Food</h3>
+
+
+
+    <label for="food-place">Where do you plan to eat?</label>
+    <input type="text" id="food-place"
+           placeholder="Restaurant name or location">
+
+    <label for="food-cost">Food cost ($)</label>
+    <input type="number" id="food-cost" min="0" step="0.01">
+
+    <label for="food-cost-type">How is this cost charged?</label>
+    <select id="food-cost-type">
+        <option value="person">Per person</option>
+        <option value="group">For the whole group</option>
+    </select>
+
+    <button type="button" id="add-food-btn">Add Food</button>
+
+    <ul id="food-list"></ul>
+</div>
+
+<p id="entry-message" aria-live="polite"></p>
+                <div>
+    <h3>Hotel or Airbnb</h3>
+
+    <label for="lodging-price">
+        Price per night for the whole group ($)
+    </label>
+    <input type="number" id="lodging-price"
+           min="0" step="0.01" value="0" required>
+
+    <label for="lodging-nights">Number of nights</label>
+    <input type="number" id="lodging-nights"
+           min="0" step="1" value="0" required>
+
+    <p>
+        Use the combined nightly price for all rooms or the entire rental.
+        Include taxes in that price when known.
+    </p>
+</div>
+<button type="button" id="save-trip-btn">Save Trip</button>
                 <div>
                     <button type="submit">Calculate</button>
                 </div>
