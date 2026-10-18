@@ -3,151 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A new web project.">
+    <meta name="description"
+          content="Explore NYC places to stay, eat, and visit, then estimate and save a solo or group trip budget.">
+
     <title>NYC on a Student Budget</title>
+
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
     <header>
+        <p class="eyebrow">EXPLORE • PLAN • SPLIT</p>
         <h1>NYC on a Student Budget</h1>
-        <p> Find affordable things to do and plan costs with friends.</p>
+        <p>Find your places. Plan your spending. Bring your friends.</p>
+
+        <nav aria-label="Page sections">
+            <a href="#explore">Explore NYC</a>
+            <a href="#planner">Plan my trip</a>
+            <a href="#resources">Travel resources</a>
+        </nav>
     </header>
 
-    <main>
-        <section>
-    <h2>Explore NYC</h2>
-    <p>Find places to stay, eat, and things to do.</p>
+    <main id="main">
+        <section id="explore" aria-labelledby="explore-title">
+            <p class="eyebrow">01 / FIND YOUR PLACES</p>
+            <h2 id="explore-title">Explore NYC</h2>
 
-    <label for="category-filter">Choose a category</label>
-    <select id="category-filter">
-        <option value="all">All places</option>
-        <option value="stay">Places to stay</option>
-        <option value="eat">Places to eat</option>
-        <option value="do">Things to do</option>
-    </select>
+            <p>
+                Browse places to stay, eat, and visit. Choose a place
+                to fill in your planner, then enter your expected cost.
+            </p>
 
-    <div id="places-display">
-        <p>Place listings will appear here.</p>
-    </div>
-</section>
-        <section>
-            <h2> Group Budget Calculator</h2>
-            <p> Enter your estimated costs in dollars. For solo trips, enter 1 traveler.</p>
+            <div class="filters">
+                <div>
+                    <label for="place-search">Search places</label>
+                    <input type="search" id="place-search"
+                           placeholder="Try tacos, museum, or hostel">
+                </div>
+
+                <div>
+                    <label for="category-filter">Category</label>
+                    <select id="category-filter">
+                        <option value="all">All places</option>
+                        <option value="stay">Places to stay</option>
+                        <option value="eat">Places to eat</option>
+                        <option value="do">Things to do</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="area-filter">Area</label>
+                    <select id="area-filter">
+                        <option value="all">All areas</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="price-filter">Cost</label>
+                    <select id="price-filter">
+                        <option value="all">All cost types</option>
+                        <option value="free">Free admission / ride</option>
+                        <option value="check">Check menu or ticket price</option>
+                        <option value="quote">Get a lodging quote</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="button" id="reset-filters" class="secondary">
+                Clear filters
+            </button>
+
+            <p id="results-count" role="status"></p>
+
+            <p class="note">
+                Free means the basic visit or ride; food, travel,
+                rentals, and special events can cost extra.
+                Paid prices are not live quotes. Follow the official
+                links for current details.
+                Sources reviewed October 17, 2026.
+            </p>
+
+            <div id="places-display" class="places-grid"></div>
+
+            <noscript>
+                Enable JavaScript to browse places and calculate your
+                budget. The travel resource links below still work.
+            </noscript>
+        </section>
+
+        <section id="planner" aria-labelledby="planner-title">
+            <p class="eyebrow">02 / BUILD YOUR BUDGET</p>
+            <h2 id="planner-title">Group Budget Calculator</h2>
+
+            <p>
+                Enter costs in US dollars. Use 1 traveler for a solo trip.
+                Food and activity entries represent one purchase or visit;
+                add another entry for another meal or outing.
+            </p>
 
             <form id="budget-form">
-                <div>
-                    <label for="travelers"> Number of Travelers</label>
-                    <input type="number" id="travelers" name="travelers" min="1"  value="1" required>
+                <label for="travelers">Number of travelers</label>
+                <input type="number" id="travelers" name="travelers"
+                       min="1" step="1" value="1" required>
+
+                <div class="planner-grid">
+                    <div class="entry-panel">
+                        <h3>Activities</h3>
+
+                        <label for="activity-name">
+                            What do you plan to do?
+                        </label>
+                        <input type="text" id="activity-name"
+                               placeholder="Choose above or enter your own activity">
+
+                        <label for="activity-cost">Activity cost ($)</label>
+                        <input type="number" id="activity-cost"
+                               min="0" step="0.01">
+
+                        <label for="activity-cost-type">
+                            How is this cost charged?
+                        </label>
+                        <select id="activity-cost-type">
+                            <option value="person">Per person</option>
+                            <option value="group">For the whole group</option>
+                        </select>
+
+                        <button type="button" id="add-activity-btn">
+                            Add Activity
+                        </button>
+
+                        <ul id="activities-list"></ul>
+                    </div>
+
+                    <div class="entry-panel">
+                        <h3>Food</h3>
+
+                        <label for="food-place">
+                            Where do you plan to eat?
+                        </label>
+                        <input type="text" id="food-place"
+                               placeholder="Choose above or enter your own food stop">
+
+                        <label for="food-cost">Food cost ($)</label>
+                        <input type="number" id="food-cost"
+                               min="0" step="0.01">
+
+                        <label for="food-cost-type">
+                            How is this cost charged?
+                        </label>
+                        <select id="food-cost-type">
+                            <option value="person">Per person</option>
+                            <option value="group">For the whole group</option>
+                        </select>
+
+                        <button type="button" id="add-food-btn">
+                            Add Food
+                        </button>
+
+                        <ul id="food-list"></ul>
+                    </div>
                 </div>
 
-               <div>
-    <h3>Activities</h3>
+                <p id="entry-message" role="status"></p>
 
-    <label for="activity-name">What do you plan to do?</label>
-    <input type="text" id="activity-name"
-           placeholder="Example: Visit an observation deck">
+                <div class="entry-panel">
+                    <h3>Lodging</h3>
 
-    <label for="activity-cost">Activity cost ($)</label>
-    <input type="number" id="activity-cost" min="0" step="0.01">
+                    <label for="lodging-name">
+                        Hotel or hostel name (optional)
+                    </label>
+                    <input type="text" id="lodging-name"
+                           placeholder="Choose above or enter your own lodging">
 
-    <label for="activity-cost-type">How is this cost charged?</label>
-    <select id="activity-cost-type">
-        <option value="person">Per person</option>
-        <option value="group">For the whole group</option>
-    </select>
+                    <label for="lodging-price">
+                        Combined price per night for the whole group ($)
+                    </label>
+                    <input type="number" id="lodging-price"
+                           min="0" step="0.01" value="0" required>
 
-    <button type="button" id="add-activity-btn">Add Activity</button>
+                    <label for="lodging-nights">Number of nights</label>
+                    <input type="number" id="lodging-nights"
+                           min="0" step="1" value="0" required>
 
-    <ul id="activities-list"></ul>
-</div>
-
-<div>
-    <h3>Food</h3>
-
-
-
-    <label for="food-place">Where do you plan to eat?</label>
-    <input type="text" id="food-place"
-           placeholder="Restaurant name or location">
-
-    <label for="food-cost">Food cost ($)</label>
-    <input type="number" id="food-cost" min="0" step="0.01">
-
-    <label for="food-cost-type">How is this cost charged?</label>
-    <select id="food-cost-type">
-        <option value="person">Per person</option>
-        <option value="group">For the whole group</option>
-    </select>
-
-    <button type="button" id="add-food-btn">Add Food</button>
-
-    <ul id="food-list"></ul>
-</div>
-
-<p id="entry-message" aria-live="polite"></p>
-                <div>
-    <h3>Hotel or Airbnb</h3>
-
-    <label for="lodging-price">
-        Price per night for the whole group ($)
-    </label>
-    <input type="number" id="lodging-price"
-           min="0" step="0.01" value="0" required>
-
-    <label for="lodging-nights">Number of nights</label>
-    <input type="number" id="lodging-nights"
-           min="0" step="1" value="0" required>
-
-    <p>
-        Use the combined nightly price for all rooms or the entire rental.
-        Include taxes in that price when known.
-    </p>
-</div>
-<button type="button" id="save-trip-btn">Save Trip</button>
-                <div>
-                    <button type="submit">Calculate</button>
+                    <p>
+                        For hotels, add the nightly prices of all rooms.
+                        For hostel beds, multiply the nightly bed rate
+                        by the number of travelers. Include taxes and
+                        fees when known. Check guest limits, minimum
+                        check-in age, and cancellation terms.
+                    </p>
                 </div>
+
+                <div>
+                    <label for="transport-cost">
+                        Transportation and other costs per person
+                        for the whole trip ($)
+                    </label>
+                    <input type="number" id="transport-cost"
+                           min="0" step="0.01" value="0" required>
+
+                    <p>
+                        Include travel to NYC and local transportation.
+                        Do not count costs already entered above.
+                    </p>
+                </div>
+
+                <button type="submit">Calculate</button>
+
+                <button type="button" id="save-trip-btn" class="secondary">
+                    Save Trip
+                </button>
             </form>
 
             <div id="budget-display" aria-live="polite">
                 Your budget will be displayed here.
             </div>
-        </section>
-        <section>
-            <h2>Travel Resources</h2>
-            <p>Explore places to stay, eat, and visit in NYC.</p>
-            <ul>
-              <li>
-           <a href="https://www.expedia.com/Hotel-Search?regionId=2621"
-   target="_blank" rel="noopener noreferrer">
-    Find NYC hotels on Expedia (opens in a new tab)
-</a>
-              </li>
-              <li>
-            <a href="https://sharedappetite.com/eat/top-10-foods-eat-nyc/"
-   target="_blank" rel="noopener noreferrer">
-                Explore NYC food ideas from Shared Appetite (opens in a new tab)
-            </a>
-        </li>
 
-         <li>
-           <a href="https://www.bookishwayfarer.com/blog/21-incredible-things-to-see-and-do-in-new-york-city"
-   target="_blank" rel="noopener noreferrer">
-    Explore NYC activities from Bookish Wayfarer (opens in a new tab)
-</a>
-        </li>
+            <p class="note">
+                Save Trip stores this plan in this browser on this device.
+                Changes are saved only when you press Save Trip.
+                No account or payment information is needed.
+            </p>
+        </section>
+
+        <section id="resources">
+            <p class="eyebrow">03 / CHECK BEFORE YOU GO</p>
+            <h2>Travel Resources</h2>
+
+            <ul class="resources">
+                <li>
+                    <a href="https://www.mta.info/">
+                        MTA trip planning and service updates
+                    </a>
+                    — check routes and disruptions before leaving.
+                </li>
+
+                <li>
+                    <a href="https://www.todaytix.com/nyc">
+                        TodayTix NYC shows
+                    </a>
+                    — compare show listings and available offers;
+                    tickets are not guaranteed.
+                </li>
+
+                <li>
+                    <a href="https://www.toogoodtogo.com/en-us">
+                        Too Good To Go
+                    </a>
+                    — explore surplus-food offers and check pickup
+                    times and dietary details.
+                </li>
+
+                <li>
+                    <a href="https://www.expedia.com/Hotel-Search?regionId=2621">
+                        Compare NYC lodging on Expedia
+                    </a>
+                    — enter your dates, guests, and room count.
+                </li>
+
+                <li>
+                    <a href="https://sharedappetite.com/eat/top-10-foods-eat-nyc/">
+                        Food inspiration from Shared Appetite
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.bookishwayfarer.com/blog/21-incredible-things-to-see-and-do-in-new-york-city">
+                        Activity inspiration from Bookish Wayfarer
+                    </a>
+                </li>
             </ul>
-       <p>
-        Check current prices, hours, and availability before your trip.
-        For hotels, select your travel dates and the number of guests
-        and rooms.
-    </p>
+
+            <p>
+                Group nearby stops using the area filter.
+                Map links open a place search, not an optimized daily
+                itinerary. Check official accessibility details, hours,
+                reservations, and current prices before visiting.
+            </p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; <span id="current-year"></span> Angelic Furaha 2026</p>
+        <p>&copy; <span id="current-year">2026</span> Angelic Furaha</p>
     </footer>
-    <script src="js/app.js" defer></script>
 </body>
 </html>

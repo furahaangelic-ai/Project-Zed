@@ -7,36 +7,56 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #ce9f74;
+    background: #ce9f74;
     color: #2f1804;
 }
 
-/* Header */
+/* Header and navigation */
 header {
-    background-color: #784820;
+    background: #784820;
     color: white;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
 }
 
 h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
 }
 
 header p {
     margin-bottom: 0;
 }
 
+.eyebrow {
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.13em;
+    margin: 0 0 0.5rem;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.3rem;
+    margin-top: 1.5rem;
+}
+
+nav a,
+nav a:hover {
+    color: white;
+}
+
 /* Main layout */
 main {
-    max-width: 700px;
+    max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
 section {
-    background-color: #fff8f0;
+    background: #fff8f0;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     border: 1px solid #a16f42;
@@ -52,7 +72,7 @@ h3 {
     color: #522b0b;
 }
 
-/* Form */
+/* Form controls */
 form div {
     margin-bottom: 1rem;
 }
@@ -68,7 +88,7 @@ select {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 0.75rem;
-    background-color: white;
+    background: white;
     color: #2f1804;
     border: 1px solid #784820;
     border-radius: 5px;
@@ -81,23 +101,33 @@ form p {
 }
 
 button {
-    background-color: #784820;
+    background: #784820;
     color: white;
-    border: none;
+    border: 1px solid #784820;
     border-radius: 5px;
     padding: 0.75rem 1.25rem;
-margin-bottom: 1rem;
+    margin-bottom: 1rem;
     font: inherit;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #522b0b;
+    background: #522b0b;
+}
+
+.secondary {
+    background: transparent;
+    color: #522b0b;
+}
+
+.secondary:hover {
+    background: #ead5bf;
 }
 
 /* Links */
 a {
     color: #522b0b;
+    text-underline-offset: 3px;
 }
 
 a:hover {
@@ -113,11 +143,115 @@ a:focus-visible {
     outline-offset: 3px;
 }
 
+header a:focus-visible {
+    outline-color: white;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background: white;
+    padding: 1rem;
+    z-index: 10;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+/* Explore filters */
+.filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1rem;
+}
+
+#results-count {
+    font-weight: bold;
+}
+
+/* Place cards */
+.places-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.place-card {
+    background: white;
+    border: 1px solid #a16f42;
+    border-radius: 8px;
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.place-card h3 {
+    margin: 0.65rem 0 0.4rem;
+    font-size: 1.15rem;
+}
+
+.place-card p {
+    margin: 0.35rem 0;
+}
+
+.place-card .badge {
+    align-self: flex-start;
+    background: #f1e3d5;
+    padding: 0.15rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.place-card .details {
+    font-size: 0.9rem;
+}
+
+.place-card .card-links {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}
+
+.place-card button {
+    margin: 1rem 0 0;
+    width: 100%;
+}
+
+/* Planner */
+.planner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.entry-panel {
+    background: #f6eadf;
+    border: 1px solid #b58a64;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.entry-panel h3 {
+    margin-top: 0;
+}
+
+#entry-message:not(:empty) {
+    padding: 0.8rem;
+    border: 1px solid #784820;
+    border-radius: 5px;
+}
+
 /* Budget results */
 #budget-display {
     margin-top: 1.5rem;
     padding: 1rem;
-    background-color: #ce9f74;
+    background: #ce9f74;
     color: #2f1804;
     border-radius: 5px;
 }
@@ -126,9 +260,44 @@ a:focus-visible {
     margin-top: 0;
 }
 
+/* Notes and resources */
+.note {
+    font-size: 0.9rem;
+    border-left: 3px solid #a16f42;
+    padding-left: 0.8rem;
+}
+
+.resources li {
+    margin-bottom: 0.75rem;
+}
+
 /* Footer */
 footer {
     text-align: center;
     padding: 1rem;
     color: #2f1804;
+}
+
+/* Tablet layout */
+@media (max-width: 850px) {
+    .places-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Phone layout */
+@media (max-width: 580px) {
+    .filters,
+    .places-grid,
+    .planner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 0 0.75rem;
+    }
 }

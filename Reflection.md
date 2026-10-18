@@ -1,0 +1,11 @@
+**Project Zed Reflection**
+
+My goal for NYC on a Student Budget was to help college students see how much a trip could cost before committing to their plans. I started with many ideas, including discounts, free activities, and transportation resources. As I worked, I focused on entering food and activities, calculating lodging costs, splitting costs among travelers, and saving a trip. Narrowing my focus gave the project a more manageable purpose.
+
+One technique I explored was saving a complete trip. At first, I was going to leave the app with just the calculations, but I realized that being able to save a plan would make it more useful. Someone might want to estimate their expenses without being ready to book anything. Adding the save feature gives users the option to come back to their plans later instead of entering everything again. This helped me think about what someone would need beyond simply seeing a total.
+
+One challenge was balancing what I wanted the app to do with the time I had available. The first section still needs improvement because it does not fully work the way I want it to. I want users to have more actual places to choose from in the different categories. However, adding those options would take more research, coding, and testing. With a busy week, I had to prioritize the main features. I plan to revisit this section next week and see how I can improve it.
+
+AI helped suggest code, but I had to decide what would serve my users. I wanted students to enter individual plans and prices so the app could calculate the total for them. I also simplified food entries to a restaurant or location and a price, requested lodging calculations by night, and decided against adding pictures. These choices came from how I wanted someone to use the app. Working on this project helped me see that adding more features is not always the priority; the features need to support the app’s purpose.
+
+This app came from my own desire to travel. I hope to use it when I finally visit NYC, which made the project feel personal and useful to me. Eventually, I would like to expand the idea beyond New York City. Although there are still things I want to improve, I now have a foundation I can continue building on.
